@@ -3,18 +3,16 @@ from BaseHandler import BaseHandler
 
 class SGTINHandler:
     def __init__(self):
-        self.handlers = [BaseHandler]
-        self.current_handler = 0
+        self.next_handler = None
 
     def to_human_readable(self, sgtin_str):
-        human_readable = None
-        if self.current_handler is not None:
-            handler = self.handlers[self.current_handler]
-            if self.current_handler < len(self.handlers) - 1:
-                self.current_handler += 1
-            else:
-                self.current_handler = 0
+        return self.next_handler.to_human_readable(sgtin_str)
 
-            human_readable = handler.to_human_readable(sgtin_str)
+    def add_handler(self, new_handler):
+        if self.next_handler is not None:
+            self.next_handler.add(new_handler)
+        else:
+            self.next_handler = new_handler
 
-        return human_readable
+    def set_next_handler(self, next_handler):
+        self.next_handler = next_handler

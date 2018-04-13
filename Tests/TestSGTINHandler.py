@@ -1,11 +1,11 @@
 import unittest
-from Implementation.SGTINHandler import SGTINHandler
+from Implementation.ChainBuilder import build_chain_of_responsibility_for_SGTIN
 
 
 class TestSGTINHandler(unittest.TestCase):
 
     def setUp(self):
-        self.handler = SGTINHandler()
+        self.handler = build_chain_of_responsibility_for_SGTIN()
 
     def tearDown(self):
         pass
