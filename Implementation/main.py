@@ -1,6 +1,7 @@
 from Client import Client
 from ChainBuilder import build_chain_of_responsibility_for_SGTIN
 
+
 def main():
     # prepare the chain of responsibility (could be in a different class builder)
     root_handler = build_chain_of_responsibility_for_SGTIN()
