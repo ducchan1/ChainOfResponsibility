@@ -25,8 +25,23 @@ class UrnHandler(SGTINHandler):
             # pass on to the next handler
             return super(UrnHandler, self).to_human_readable(sgtin_str)
 
-    def compute_checksum(self, level_str):
-        # here we should actually compute the checksum
-        # but for dojo purposes this algorithm is not worth
-        # implementing
-        return "2"
+    @staticmethod
+    def compute_checksum(level_str):
+        if len(level_str) != 13:
+            raise Exception("Invalid length")
+
+        odd_sum = 0
+        even_sum = 0
+        for i, char in enumerate(level_str):
+            j = i + 1
+            if j % 2 == 0:
+                even_sum += int(char)
+            else:
+                odd_sum += int(char)
+
+        total_sum = (odd_sum * 3) + even_sum
+        mod = total_sum % 10
+        check_digit = 10 - mod
+        if check_digit == 10:
+            check_digit = 0
+        return str(check_digit)
