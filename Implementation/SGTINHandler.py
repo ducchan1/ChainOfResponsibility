@@ -1,7 +1,6 @@
-from BaseHandler import BaseHandler
 
 
-class SGTINHandler:
+class SGTINHandler(object):
     def __init__(self):
         self.next_handler = None
 
@@ -10,7 +9,7 @@ class SGTINHandler:
 
     def add_handler(self, new_handler):
         if self.next_handler is not None:
-            self.next_handler.add(new_handler)
+            self.next_handler.add_handler(new_handler)
         else:
             self.next_handler = new_handler
 

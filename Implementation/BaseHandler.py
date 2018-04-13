@@ -1,10 +1,10 @@
+from SGTINHandler import SGTINHandler
 
 
-class BaseHandler:
+class BaseHandler(SGTINHandler):
 
     def __init__(self):
-        pass
+        super(BaseHandler, self).__init__()
 
-    @staticmethod
-    def to_human_readable(sgtin_str):
+    def to_human_readable(self, sgtin_str):
         return sgtin_str
